@@ -1,0 +1,57 @@
+<table class="table table-hover">
+  <thead>
+  <tr>
+    <th scope="col">#</th>
+    <th scope="col">Task</th>
+    <th scope="col">Description</th>
+    <th scope="col">Date</th>
+    <th scope="col">Done</th>
+    <th scope="col">Delete</th>
+    <th scope="col">Update</th>
+
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let todo of listOfTodos">
+    <th scope="row">{{todo.todoId}}</th>
+    <td>{{todo.task}}</td>
+    <td>{{todo.description}}</td>
+    <td>{{todo.date}}</td>
+    <td>{{todo.done}}</td>
+    <td><button type="button" class="btn btn-danger" (click)="delete(todo.todoId)"onClick="window.location.reload();">Delete</button> </td>
+    <td><button type="button" class="btn btn-warning" [routerLink]="['/todo/update',todo.todoId]">Update</button> </td>
+  </tr>
+  </tbody>
+</table>
+
+<button (click)="showAddTodo()">Add Todo</button>
+<div *ngIf="show">
+  <form (ngSubmit)="handleSubmit()" [formGroup]="todoForm">
+
+    <label>
+      Task
+      <input formControlName="task" type="text">
+    </label>
+    <br>
+
+    <label>
+      Description
+      <input formControlName="description" type="text">
+    </label>
+    <br>
+
+    <label>
+      Date
+      <input formControlName="date" type="date">
+    </label>
+    <br>
+
+    <label>
+      Done
+      <input formControlName="done" type="checkbox">
+    </label>
+    <br>
+
+    <input type="submit" value="Add This Todo" onClick="window.location.reload();">
+  </form>
+</div>
